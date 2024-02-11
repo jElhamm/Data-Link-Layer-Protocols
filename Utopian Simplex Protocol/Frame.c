@@ -36,3 +36,16 @@ void receiveFrame(Frame frame) {
     }
 }
  
+void utopianSimplexProtocol(Frame frame) {
+    if (frame.type == DATA) {
+        sendFrame(frame);
+        receiveFrame(frame);
+    } else if (frame.type == ACK) {
+        sendFrame(frame);
+    } else {
+        sendFrame(frame);
+        printf("Resending the data frame in response to NACK\n");
+        sendFrame(frame);            // Resend data frame in response to NACK
+        receiveFrame(frame);
+    }
+}
