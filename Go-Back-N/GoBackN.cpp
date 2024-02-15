@@ -21,4 +21,27 @@ GoBackN::GoBackN(int window_size) {
     next_frame_to_send = 0;
     frame_expected = 0;
 }
+
+// Sender function for Go-Back-N algorithm
+void GoBackN::sender() {
+    while (frame_to_send < MAX_SEQUENCE_NUM) {
+        while (next_frame_to_send < frame_to_send + WINDOW_SIZE && next_frame_to_send < MAX_SEQUENCE_NUM) {
+            cout << "Sending frame " << next_frame_to_send << endl;
+            next_frame_to_send++;
+        }
+
+        cout << "---> Enter acknowledgment received: ";
+        int ack_received;
+        cin >> ack_received;
+
+        if (ack_received >= frame_to_send) {
+            frame_to_send = ack_received + 1;
+        } else {
+            cout << "** Incorrect acknowledgment received. Resending frames. ***\n";
+            next_frame_to_send = frame_to_send;
+        }
+    }
+
+    cout << "*** Sender: All frames sent successfully ***\n";
+}
  

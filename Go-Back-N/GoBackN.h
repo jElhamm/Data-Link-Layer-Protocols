@@ -15,6 +15,7 @@ private:
 
 public:
     GoBackN(int window_size);
+    void sender();
 };
 
 #endif
