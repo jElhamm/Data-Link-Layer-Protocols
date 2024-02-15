@@ -16,6 +16,7 @@ private:
 public:
     GoBackN(int window_size);
     void sender();
+    void receiver();
 };
 
 #endif

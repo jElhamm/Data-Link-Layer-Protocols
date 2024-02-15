@@ -44,4 +44,22 @@ void GoBackN::sender() {
 
     cout << "*** Sender: All frames sent successfully ***\n";
 }
- 
+
+// Receiver function for Go-Back-N algorithm
+void GoBackN::receiver() {
+    while (frame_expected < MAX_SEQUENCE_NUM) {
+        cout << "Waiting for frame " << frame_expected << "...\n";
+
+        bool frame_arrives = rand() % 2;
+
+        if (frame_arrives) {
+            cout << "Frame " << frame_expected << " received\n";
+            cout << "Sending acknowledgment: " << frame_expected << endl;
+            frame_expected++;
+        } else {
+            cout << "*** Timeout occurred, requesting retransmission ***\n";
+        }
+    }
+
+    cout << "*** Receiver: All frames received successfully ***\n";
+}
