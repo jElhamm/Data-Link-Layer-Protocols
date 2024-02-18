@@ -18,6 +18,7 @@ public:
     int seqNum;
     std::string data;
     bool ack;
+    Frame(int seq, const std::string& d);
 };
 
 #endif
